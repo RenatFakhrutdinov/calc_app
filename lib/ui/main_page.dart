@@ -1,5 +1,6 @@
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/strings.dart';
+import 'package:calcapp/ui/graph_widget/graph_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -45,14 +46,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
-              Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.grey,
-                child: Center(
-                  child: Text('Graph'),
-                ),
-              )
+              GraphWidget()
             ],
           ),
         ));
