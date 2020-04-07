@@ -5,5 +5,7 @@ class Strings {
   static const String exp3 = "x/2";
   static const String exp4 = "x * x";
   static const String exp5 = "-2x";
-  static const String plotTheFunction = "Plot the function";
+  static const String plotTheFunction = "Plot the function with";
+  static const String nativeModule = "Native module";
+  static const String wolframAlphaApi = "Wolfram Alpha API";
 }

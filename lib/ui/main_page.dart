@@ -23,12 +23,30 @@ class _MainPageState extends State<MainPage> {
               TextField(
                 controller: _mathExpressionController,
               ),
-              RaisedButton(
-                child: Text(Strings.plotTheFunction),
-                onPressed: () => print('plot the function'),
+              Column(
+                children: <Widget>[
+                  Text(Strings.plotTheFunction, textAlign: TextAlign.center),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text(Strings.nativeModule),
+                          onPressed: () => print('plot the function'),
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text(Strings.wolframAlphaApi),
+                          onPressed: () => print('plot the function'),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
               Container(
-                height: 200,
+                height: 300,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.grey,
                 child: Center(
