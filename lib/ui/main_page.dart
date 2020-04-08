@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/strings.dart';
 import 'package:calcapp/ui/graph_widget/graph_widget.dart';
@@ -11,6 +13,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   TextEditingController _mathExpressionController =
       TextEditingController(text: Randomizer().randomExpression());
+
+  final List<Point> data = [
+    const Point(9, -5.0),
+    const Point(-7.0, 9.0),
+    const Point(13.0, 5.0),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,9 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
-              GraphWidget()
+              GraphWidget(
+                points: data,
+              )
             ],
           ),
         ));
