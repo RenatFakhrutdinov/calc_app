@@ -1,3 +1,4 @@
+import 'package:calcapp/presenter/edge_helper.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math';
@@ -25,7 +26,6 @@ class GraphWidget extends StatelessWidget {
   }
 }
 
-///todo fix sorting of points
 class _GraphPainter extends CustomPainter {
   final List<Point> points;
 
@@ -34,13 +34,12 @@ class _GraphPainter extends CustomPainter {
   _GraphPainter({
     this.points,
   }) : super() {
-    assert(this.points != null && points.length > 0);
-    this.points.sort((a, b) => a.x.compareTo(b.x));
-    minX = (this.points.first.x > 0.0) ? 0.0 : this.points.first.x;
-    maxX = (this.points.last.x < 0.0) ? 0.0 : this.points.last.x;
-    this.points.sort((a, b) => a.y.compareTo(b.y));
-    minY = (this.points.first.y > 0.0) ? 0.0 : this.points.first.y;
-    maxY = (this.points.last.y < 0.0) ? 0.0 : this.points.last.y;
+    assert(points != null && points.length > 0);
+    EdgeHelper edgeHelper = EdgeHelper();
+    minX = edgeHelper.minX(points);
+    maxX = edgeHelper.maxX(points);
+    minY = edgeHelper.minY(points);
+    maxY = edgeHelper.maxY(points);
     windowWidth = maxX.abs() + minX.abs();
     windowHeight = maxY.abs() + minY.abs();
   }
@@ -73,7 +72,7 @@ class _GraphPainter extends CustomPainter {
       bool isLastPoint = (i + 1) == points.length;
       Offset firstPoint = _scalePoint(points[i], size);
       if (!isLastPoint) {
-        var secondPoint = _scalePoint(points[i + 1], size);
+        Offset secondPoint = _scalePoint(points[i + 1], size);
         canvas.drawLine(
           firstPoint,
           secondPoint,

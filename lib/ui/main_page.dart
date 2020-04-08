@@ -18,6 +18,7 @@ class _MainPageState extends State<MainPage> {
     const Point(9, -5.0),
     const Point(-7.0, 9.0),
     const Point(13.0, 5.0),
+    const Point(-13.0, -7.0),
   ];
 
   @override
