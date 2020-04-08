@@ -1,4 +1,4 @@
-import 'package:calcapp/presenter/edge_helper.dart';
+import 'package:calcapp/presenter/edge_finder.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math';
@@ -35,7 +35,7 @@ class _GraphPainter extends CustomPainter {
     this.points,
   }) : super() {
     assert(points != null && points.length > 0);
-    EdgeHelper edgeHelper = EdgeHelper();
+    EdgeFinder edgeHelper = EdgeFinder();
     minX = edgeHelper.minX(points);
     maxX = edgeHelper.maxX(points);
     minY = edgeHelper.minY(points);

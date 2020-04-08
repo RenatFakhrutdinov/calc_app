@@ -1,6 +1,6 @@
 import 'dart:math';
 
-class EdgeHelper {
+class EdgeFinder {
   double minX(List<Point<num>> points) {
     double value;
     value = points
