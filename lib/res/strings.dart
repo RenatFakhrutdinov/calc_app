@@ -8,4 +8,5 @@ class Strings {
   static const String plotTheFunction = "Plot the function with";
   static const String nativeModule = "Native module";
   static const String wolframAlphaApi = "Wolfram Alpha API";
+  static const String writeAnyExpression = "Write any mathematical expression";
 }
