@@ -1,4 +1,4 @@
-import 'package:calcapp/ui/main_page.dart';
+import 'package:calcapp/screens/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

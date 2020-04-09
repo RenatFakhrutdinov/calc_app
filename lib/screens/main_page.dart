@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/strings.dart';
-import 'package:calcapp/ui/graph_widget/graph_widget.dart';
+import 'package:calcapp/widgets/graph_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
