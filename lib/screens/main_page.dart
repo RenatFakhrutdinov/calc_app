@@ -1,6 +1,5 @@
-import 'package:calcapp/api/wolfram_alpha_api.dart';
-import 'package:calcapp/model/common_response_model.dart';
-import 'package:calcapp/presenter/randomizer.dart';
+import 'package:calcapp/helper/navigation.dart';
+import 'package:calcapp/helper/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
 import 'package:calcapp/widgets/custom_card.dart';
@@ -23,8 +22,8 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(title: Text(Strings.title), centerTitle: true),
         body: Padding(
           padding: EdgeInsets.all(standardPadding),
-          child: ListView(
-            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CustomCard(
                 child: TextField(
@@ -81,25 +80,17 @@ class _MainPageState extends State<MainPage> {
                       Expanded(
                         child: RaisedButton(
                           child: Text(Strings.wolframAlphaApi),
-                          onPressed: () => print('plot the function'),
+                          onPressed: () => AppNavigator.toWolframAlphaPlotPage(
+                              context,
+                              mathExpression: _mathExpressionController.text,
+                              from: range.start,
+                              to: range.end),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
-              FutureBuilder(
-                future: WolframAlphaApi()
-                    .getPlot(mathExpression: '2x', from: -100, to: 3.14),
-                builder: (context, AsyncSnapshot<CommonResponseModel> text) {
-                  if (text.hasData) {
-                    return SelectableText(text.data.queryResult.pods[0].title);
-                  } else if (text.hasError) {
-                    return SelectableText(text.error.toString());
-                  }
-                  return Text(text.connectionState.toString());
-                },
-              )
             ],
           ),
         ));

@@ -1,4 +1,4 @@
-import 'package:calcapp/presenter/edge_finder.dart';
+import 'package:calcapp/helper/edge_finder.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:math';

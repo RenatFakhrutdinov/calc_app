@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:calcapp/presenter/edge_finder.dart';
+import 'package:calcapp/helper/edge_finder.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
