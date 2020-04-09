@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
 import 'package:calcapp/widgets/custom_card.dart';
-import 'package:calcapp/widgets/graph_widget.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -16,16 +13,6 @@ class _MainPageState extends State<MainPage> {
   TextEditingController _mathExpressionController =
       TextEditingController(text: Randomizer().randomExpression());
 
-  final List<Point> data = [
-    const Point(9, -5.0),
-    const Point(-7.0, 9.0),
-    const Point(13.0, 5.0),
-    const Point(-13.0, -7.0),
-  ];
-
-  int minValue = -5;
-  int maxValue = 5;
-
   RangeValues range = RangeValues(-5, 5);
 
   @override
@@ -35,32 +22,46 @@ class _MainPageState extends State<MainPage> {
         body: Padding(
           padding: EdgeInsets.all(standardPadding),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CustomCard(
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(
-                      standardPadding, 0, standardPadding, standardPadding),
-                  child: TextField(
-                    controller: _mathExpressionController,
-                    decoration:
-                        InputDecoration(labelText: Strings.writeAnyExpression),
-                  ),
+                child: TextField(
+                  controller: _mathExpressionController,
+                  decoration:
+                      InputDecoration(labelText: Strings.writeAnyExpression),
                 ),
               ),
               CustomCard(
-                child: RangeSlider(
-                  values: range,
-                  onChanged: (RangeValues newRange) {
-                    setState(() {
-                      range = newRange;
-                    });
-                  },
-                  divisions: divisionsOfRange,
-                  min: minOfRange,
-                  max: maxOfRange,
-                  labels:
-                      RangeLabels(range.start.toString(), range.end.toString()),
+                child: Column(
+                  children: <Widget>[
+                    RangeSlider(
+                      values: range,
+                      onChanged: (RangeValues newRange) {
+                        setState(() {
+                          range = newRange;
+                        });
+                      },
+                      divisions: divisionsOfRange,
+                      min: minOfRange,
+                      max: maxOfRange,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'x from ${range.start}',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            'to ${range.end}',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
               ),
               Column(
@@ -85,9 +86,6 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
-              GraphWidget(
-                points: data,
-              )
             ],
           ),
         ));

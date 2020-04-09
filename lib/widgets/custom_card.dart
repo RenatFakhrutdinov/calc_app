@@ -1,3 +1,4 @@
+import 'package:calcapp/res/numbers.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
@@ -9,7 +10,10 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.grey[300],
-      child: child,
+      child: Container(
+          margin: EdgeInsets.fromLTRB(
+              standardPadding, 0, standardPadding, standardPadding),
+          child: child),
     );
   }
 }
