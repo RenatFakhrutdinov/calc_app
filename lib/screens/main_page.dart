@@ -1,3 +1,4 @@
+import 'package:calcapp/api/wolfram_alpha_api.dart';
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
@@ -21,8 +22,8 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(title: Text(Strings.title), centerTitle: true),
         body: Padding(
           padding: EdgeInsets.all(standardPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: ListView(
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               CustomCard(
                 child: TextField(
@@ -86,6 +87,14 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ],
               ),
+              FutureBuilder(
+                future: WolframAlphaApi().fetchPlot('2x'),
+                builder: (context, text) {
+                  if(text.hasData) {
+                    return SelectableText(text.data);
+                  } else return Text(text.connectionState.toString());
+                },
+              )
             ],
           ),
         ));
