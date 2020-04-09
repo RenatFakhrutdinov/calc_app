@@ -88,11 +88,13 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
               FutureBuilder(
-                future: WolframAlphaApi().fetchPlot('2x'),
+                future: WolframAlphaApi()
+                    .fetchPlot(mathExpression: '2x', from: -100, to: 3.14),
                 builder: (context, text) {
-                  if(text.hasData) {
+                  if (text.hasData) {
                     return SelectableText(text.data);
-                  } else return Text(text.connectionState.toString());
+                  } else
+                    return Text(text.connectionState.toString());
                 },
               )
             ],
