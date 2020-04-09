@@ -1,5 +1,8 @@
 class Strings {
   static const String title = "CalcApp";
+  static const String wolframAppId = "5GJP3X-4378GYWVUL";
+  static const String wolframAlphaApiUrl =
+      "https://api.wolframalpha.com/v2/query?";
   static const String exp1 = "2x + 6";
   static const String exp2 = "10 - x";
   static const String exp3 = "x/2";
