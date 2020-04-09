@@ -1,4 +1,5 @@
 import 'package:calcapp/api/wolfram_alpha_api.dart';
+import 'package:calcapp/model/common_response_model.dart';
 import 'package:calcapp/presenter/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
@@ -89,12 +90,14 @@ class _MainPageState extends State<MainPage> {
               ),
               FutureBuilder(
                 future: WolframAlphaApi()
-                    .fetchPlot(mathExpression: '2x', from: -100, to: 3.14),
-                builder: (context, text) {
+                    .getPlot(mathExpression: '2x', from: -100, to: 3.14),
+                builder: (context, AsyncSnapshot<CommonResponseModel> text) {
                   if (text.hasData) {
-                    return SelectableText(text.data);
-                  } else
-                    return Text(text.connectionState.toString());
+                    return SelectableText(text.data.queryResult.pods[0].title);
+                  } else if (text.hasError) {
+                    return SelectableText(text.error.toString());
+                  }
+                  return Text(text.connectionState.toString());
                 },
               )
             ],

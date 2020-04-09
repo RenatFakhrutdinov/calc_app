@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:calcapp/model/common_response_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -7,14 +10,21 @@ class WolframAlphaApi {
       "https://api.wolframalpha.com/v2/query?input=plot";
   http.Client httpClient = http.Client();
 
-  Future<String> fetchPlot(
+  Future<CommonResponseModel> getPlot(
       {@required String mathExpression,
       @required num from,
       @required num to}) async {
     final plotUrl =
         "$wolframAlphaApiUrl $mathExpression, x=$from..$to&format=image&output=JSON&appid=$wolframAppId";
-    final response = await httpClient.get(plotUrl);
-    String result = response.body;
-    return result;
+    http.Response response;
+    try {
+      response = await httpClient.get(plotUrl);
+    } catch (e) {
+      throw ('getPlot error: $e');
+    }
+
+    CommonResponseModel model;
+    model = CommonResponseModel.fromJson(jsonDecode(response.body));
+    return model;
   }
 }
