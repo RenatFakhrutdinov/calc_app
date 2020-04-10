@@ -68,6 +68,8 @@ class _MainPageState extends State<MainPage> {
               Column(
                 children: <Widget>[
                   Text(Strings.plotTheFunction, textAlign: TextAlign.center),
+
+                  ///todo add validation before click buttons
                   Row(
                     children: <Widget>[
                       Expanded(
