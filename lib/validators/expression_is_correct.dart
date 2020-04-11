@@ -1,3 +1,6 @@
+bool expressionIsCorrect(String mathExpression, num from, num to) {
+  return true;
+}
 //  String test() {
 //    ///if sqrt && (from<0 \\ to<0) { error }
 //    ///if !contain x {error}

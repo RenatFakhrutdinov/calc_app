@@ -9,4 +9,5 @@ class Strings {
   static const String nativeModule = "Native module";
   static const String wolframAlphaApi = "Wolfram Alpha API";
   static const String writeAnyExpression = "Write any mathematical expression";
+  static const String fromCantBeTo = "Range of \"x\" must be longer";
 }

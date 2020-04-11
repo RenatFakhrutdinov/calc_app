@@ -2,6 +2,8 @@ import 'package:calcapp/helper/navigation.dart';
 import 'package:calcapp/helper/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
+import 'package:calcapp/res/warning_strings.dart';
+import 'package:calcapp/validators/from_is_not_equal_to.dart';
 import 'package:calcapp/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 
@@ -32,38 +34,48 @@ class _MainPageState extends State<MainPage> {
                     InputDecoration(labelText: Strings.writeAnyExpression),
               ),
             ),
-            CustomCard(
-              child: Column(
-                children: <Widget>[
-                  RangeSlider(
-                    values: range,
-                    onChanged: (RangeValues newRange) {
-                      setState(() {
-                        range = newRange;
-                      });
-                    },
-                    divisions: divisionsOfRange,
-                    min: minOfRange,
-                    max: maxOfRange,
-                  ),
-                  Row(
+            Column(
+              children: <Widget>[
+                Text(
+                  WarningStrings.fromEqualTo,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.redAccent),
+                ),
+                CustomCard(
+                  child: Column(
                     children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          'x from ${range.start}',
-                          textAlign: TextAlign.center,
-                        ),
+                      RangeSlider(
+                        values: range,
+                        onChanged: (RangeValues newRange) {
+                          setState(() {
+                            range = newRange;
+                            fromIsNotEqualTo(newRange.start, newRange.end);
+                          });
+                        },
+                        divisions: divisionsOfRange,
+                        min: minOfRange,
+                        max: maxOfRange,
                       ),
-                      Expanded(
-                        child: Text(
-                          'to ${range.end}',
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Text(
+                              'x from ${range.start}',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          Expanded(
+                            child: Text(
+                              'to ${range.end}',
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
             Column(
               children: <Widget>[
