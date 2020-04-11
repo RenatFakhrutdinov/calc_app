@@ -108,8 +108,12 @@ void main() {
     String additionExp = 'x+5';
     String divisionExp = 'x/3';
     String sqrtExp = 'sqrt(x)';
+    String divisionByZeroCase = '2/x';
     expect(generateListOfPoints(additionExp, -5, 5).length, 41);
     expect(generateListOfPoints(divisionExp, -5, 5).length, 41);
     expect(generateListOfPoints(sqrtExp, 0, 10).length, 41);
+
+    ///skip division by zero
+    expect(generateListOfPoints(divisionByZeroCase, -5, 5).length, 40);
   });
 }

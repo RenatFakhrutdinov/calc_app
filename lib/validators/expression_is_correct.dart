@@ -6,12 +6,12 @@ bool expressionIsCorrect(String mathExpression, num from, num to) {
     WarningStrings.wrongExpression = Strings.needX;
     return false;
   }
+
   WarningStrings.wrongExpression = null;
   return true;
 }
 //  String test() {
 //    ///if sqrt && (from<0 \\ to<0) { error }
-//    ///if !contain x {error}
 //    ///if /x && from<0 && to >0 {do something}
 //    ///check from!=to
 //
