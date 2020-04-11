@@ -8,7 +8,7 @@ List<Point> generateListOfPoints(String expression, num from, num to) {
 
   List<Point> list = [];
   num loopStep = getStepValueOneFortieth(from, to);
-  for (num n = from; n < to; n = n + loopStep) {
+  for (num n = from; n <= to; n = n + loopStep) {
     list.add(Point(n, functionOfX(n)));
   }
   return list;

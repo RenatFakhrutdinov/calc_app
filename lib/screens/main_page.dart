@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:calcapp/helper/navigation.dart';
 import 'package:calcapp/helper/randomizer.dart';
+import 'package:calcapp/point_generator/generate_list_of_points.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
 import 'package:calcapp/widgets/custom_card.dart';
@@ -18,6 +21,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Point> list = generateListOfPoints('x+5', -5, 5);
+
     return Scaffold(
         appBar: AppBar(title: Text(Strings.title), centerTitle: true),
         body: Padding(
@@ -25,6 +30,7 @@ class _MainPageState extends State<MainPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
+              SelectableText(list.toString()),
               CustomCard(
                 child: TextField(
                   controller: _mathExpressionController,
