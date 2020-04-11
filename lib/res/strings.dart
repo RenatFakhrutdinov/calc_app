@@ -10,4 +10,5 @@ class Strings {
   static const String wolframAlphaApi = "Wolfram Alpha API";
   static const String writeAnyExpression = "Write any mathematical expression";
   static const String fromCantBeTo = "Range of \"x\" must be longer";
+  static const String needX = "Need x value";
 }

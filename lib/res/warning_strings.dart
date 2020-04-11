@@ -1,4 +1,4 @@
 class WarningStrings {
   static String fromEqualTo = '';
-  static String wrongExpression = '';
+  static String wrongExpression;
 }

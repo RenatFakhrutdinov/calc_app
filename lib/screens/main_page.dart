@@ -3,6 +3,7 @@ import 'package:calcapp/helper/randomizer.dart';
 import 'package:calcapp/res/numbers.dart';
 import 'package:calcapp/res/strings.dart';
 import 'package:calcapp/res/warning_strings.dart';
+import 'package:calcapp/validators/expression_is_correct.dart';
 import 'package:calcapp/validators/from_is_not_equal_to.dart';
 import 'package:calcapp/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,14 @@ class _MainPageState extends State<MainPage> {
             CustomCard(
               child: TextField(
                 controller: _mathExpressionController,
-                decoration:
-                    InputDecoration(labelText: Strings.writeAnyExpression),
+                decoration: InputDecoration(
+                    labelText: Strings.writeAnyExpression,
+                    errorText: WarningStrings.wrongExpression),
+                onChanged: (text) {
+                  setState(() {
+                    expressionIsCorrect(text, range.start, range.end);
+                  });
+                },
               ),
             ),
             Column(

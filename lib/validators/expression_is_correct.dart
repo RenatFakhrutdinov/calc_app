@@ -1,4 +1,12 @@
+import 'package:calcapp/res/strings.dart';
+import 'package:calcapp/res/warning_strings.dart';
+
 bool expressionIsCorrect(String mathExpression, num from, num to) {
+  if (!mathExpression.contains('x')) {
+    WarningStrings.wrongExpression = Strings.needX;
+    return false;
+  }
+  WarningStrings.wrongExpression = null;
   return true;
 }
 //  String test() {
