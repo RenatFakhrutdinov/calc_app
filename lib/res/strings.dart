@@ -11,4 +11,5 @@ class Strings {
   static const String writeAnyExpression = "Write any mathematical expression";
   static const String fromCantBeTo = "Range of \"x\" must be longer";
   static const String needX = "Need x value";
+  static const String impossibleExpression = "Impossible Expression";
 }

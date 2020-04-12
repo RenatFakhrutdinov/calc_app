@@ -8,6 +8,11 @@ bool expressionIsCorrect(String mathExpression, num from, num to) {
     return false;
   }
 
+  if (mathExpression.contains('sqrt(-') || mathExpression.contains('/0')) {
+    WarningStrings.wrongExpression = Strings.impossibleExpression;
+    return false;
+  }
+
   ///this block checks expression for exception of FunctionOfX
   try {
     FunctionOfX functionOfX = FunctionOfX(fromExpression: mathExpression);
