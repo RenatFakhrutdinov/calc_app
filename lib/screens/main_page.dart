@@ -87,30 +87,44 @@ class _MainPageState extends State<MainPage> {
             Column(
               children: <Widget>[
                 Text(Strings.plotTheFunction, textAlign: TextAlign.center),
-
-                ///todo add validation before click buttons
                 Row(
                   children: <Widget>[
                     Expanded(
                       child: RaisedButton(
-                        child: Text(Strings.nativeModule),
-                        onPressed: () => AppNavigator.toNativeModulePlotPage(
-                            context,
-                            mathExpression: _mathExpressionController.text,
-                            from: range.start,
-                            to: range.end),
-                      ),
+                          child: Text(Strings.nativeModule),
+                          onPressed: () {
+                            if (expressionIsCorrect(
+                                    _mathExpressionController.text,
+                                    range.start,
+                                    range.end) &&
+                                fromIsNotEqualTo(range.start, range.end)) {
+                              AppNavigator.toNativeModulePlotPage(context,
+                                  mathExpression:
+                                      _mathExpressionController.text,
+                                  from: range.start,
+                                  to: range.end);
+                            } else
+                              print('need snackbar');
+                          }),
                     ),
                     SizedBox(width: standardPadding),
                     Expanded(
                       child: RaisedButton(
-                        child: Text(Strings.wolframAlphaApi),
-                        onPressed: () => AppNavigator.toWolframAlphaPlotPage(
-                            context,
-                            mathExpression: _mathExpressionController.text,
-                            from: range.start,
-                            to: range.end),
-                      ),
+                          child: Text(Strings.wolframAlphaApi),
+                          onPressed: () {
+                            if (expressionIsCorrect(
+                                    _mathExpressionController.text,
+                                    range.start,
+                                    range.end) &&
+                                fromIsNotEqualTo(range.start, range.end)) {
+                              AppNavigator.toWolframAlphaPlotPage(context,
+                                  mathExpression:
+                                      _mathExpressionController.text,
+                                  from: range.start,
+                                  to: range.end);
+                            } else
+                              print('need snackbar');
+                          }),
                     ),
                   ],
                 ),
