@@ -12,4 +12,5 @@ class Strings {
   static const String fromCantBeTo = "Range of \"x\" must be longer";
   static const String needX = "Need x value";
   static const String impossibleExpression = "Impossible Expression";
+  static const String resolveRedIssues = "Resolve all red issues";
 }

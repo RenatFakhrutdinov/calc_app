@@ -6,6 +6,7 @@ import 'package:calcapp/res/warning_strings.dart';
 import 'package:calcapp/validators/expression_is_correct.dart';
 import 'package:calcapp/validators/from_is_not_equal_to.dart';
 import 'package:calcapp/widgets/custom_card.dart';
+import 'package:calcapp/widgets/show_snackbar_function.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _MainPageState extends State<MainPage> {
                 Text(
                   WarningStrings.fromEqualTo,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.redAccent),
+                  style: TextStyle(color: Colors.red),
                 ),
                 CustomCard(
                   child: Column(
@@ -87,47 +88,52 @@ class _MainPageState extends State<MainPage> {
             Column(
               children: <Widget>[
                 Text(Strings.plotTheFunction, textAlign: TextAlign.center),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: RaisedButton(
-                          child: Text(Strings.nativeModule),
-                          onPressed: () {
-                            if (expressionIsCorrect(
-                                    _mathExpressionController.text,
-                                    range.start,
-                                    range.end) &&
-                                fromIsNotEqualTo(range.start, range.end)) {
-                              AppNavigator.toNativeModulePlotPage(context,
-                                  mathExpression:
+
+                /// Create an inner BuildContext so that the onPressed methods
+                /// can refer to the Scaffold with Scaffold.of().
+                Builder(builder: (innerContext) {
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: RaisedButton(
+                            child: Text(Strings.nativeModule),
+                            onPressed: () {
+                              if (expressionIsCorrect(
                                       _mathExpressionController.text,
-                                  from: range.start,
-                                  to: range.end);
-                            } else
-                              print('need snackbar');
-                          }),
-                    ),
-                    SizedBox(width: standardPadding),
-                    Expanded(
-                      child: RaisedButton(
-                          child: Text(Strings.wolframAlphaApi),
-                          onPressed: () {
-                            if (expressionIsCorrect(
-                                    _mathExpressionController.text,
-                                    range.start,
-                                    range.end) &&
-                                fromIsNotEqualTo(range.start, range.end)) {
-                              AppNavigator.toWolframAlphaPlotPage(context,
-                                  mathExpression:
+                                      range.start,
+                                      range.end) &&
+                                  fromIsNotEqualTo(range.start, range.end)) {
+                                AppNavigator.toNativeModulePlotPage(context,
+                                    mathExpression:
+                                        _mathExpressionController.text,
+                                    from: range.start,
+                                    to: range.end);
+                              } else
+                                showSnackBar(innerContext);
+                            }),
+                      ),
+                      SizedBox(width: standardPadding),
+                      Expanded(
+                        child: RaisedButton(
+                            child: Text(Strings.wolframAlphaApi),
+                            onPressed: () {
+                              if (expressionIsCorrect(
                                       _mathExpressionController.text,
-                                  from: range.start,
-                                  to: range.end);
-                            } else
-                              print('need snackbar');
-                          }),
-                    ),
-                  ],
-                ),
+                                      range.start,
+                                      range.end) &&
+                                  fromIsNotEqualTo(range.start, range.end)) {
+                                AppNavigator.toWolframAlphaPlotPage(context,
+                                    mathExpression:
+                                        _mathExpressionController.text,
+                                    from: range.start,
+                                    to: range.end);
+                              } else
+                                showSnackBar(innerContext);
+                            }),
+                      ),
+                    ],
+                  );
+                }),
               ],
             ),
           ],
