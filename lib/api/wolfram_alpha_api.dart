@@ -8,7 +8,6 @@ class WolframAlphaApi {
   static const String wolframAppId = "5GJP3X-4378GYWVUL";
   static const String wolframAlphaApiUrl =
       "https://api.wolframalpha.com/v2/query?input=plot";
-  http.Client httpClient = http.Client();
 
   Future<CommonResponseModel> getPlot(
       {@required String mathExpression,
@@ -18,7 +17,7 @@ class WolframAlphaApi {
         "$wolframAlphaApiUrl $mathExpression, x=$from..$to&format=image&output=JSON&appid=$wolframAppId";
     http.Response response;
     try {
-      response = await httpClient.get(plotUrl);
+      response = await http.get(plotUrl);
     } catch (e) {
       throw ('getPlot error: $e');
     }
